@@ -34,6 +34,9 @@
     <MakeDir Directories="$(MSBuildProjectDirectory)\Published\DbUp-SqlCe" Condition="!Exists('$(MSBuildProjectDirectory)\DbUp-SqlCe\Published')" />
     <MakeDir Directories="$(MSBuildProjectDirectory)\Published\DbUp-SqlCe\lib" Condition="!Exists('$(MSBuildProjectDirectory)\DbUp-SqlCe\Published\lib')" />
     <MakeDir Directories="$(MSBuildProjectDirectory)\Published\DbUp-SqlCe\lib\NET35" Condition="!Exists('$(MSBuildProjectDirectory)\DbUp-SqlCe\Published\lib\NET35')" />
+	<MakeDir Directories="$(MSBuildProjectDirectory)\Published\DbUp-MySql" Condition="!Exists('$(MSBuildProjectDirectory)\DbUp-MySql\Published')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\Published\DbUp-MySql\lib" Condition="!Exists('$(MSBuildProjectDirectory)\DbUp-MySql\Published\lib')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\Published\DbUp-MySql\lib\NET35" Condition="!Exists('$(MSBuildProjectDirectory)\DbUp-MySql\Published\lib\NET35')" />
 
     <!-- Version Info -->
     <AssemblyInfo
@@ -79,9 +82,12 @@
       <Net35Files Include="$(Root)\src\DbUp\bin\*.exe" />
       <Net35SqlCeFiles Include="$(Root)\src\DbUp.SqlCe\bin\Release\DbUp.SqlCe.dll" />
       <Net35SqlCeFiles Include="$(Root)\src\DbUp.SqlCe\bin\Release\DbUp.SqlCe.xml" />
+	  <Net35MySqlFiles Include="$(Root)\src\DbUp.MySql\bin\Release\DbUp.MySql.dll" />
+      <Net35MySqlFiles Include="$(Root)\src\DbUp.MySql\bin\Release\DbUp.MySql.xml" />
     </ItemGroup>
     <Copy SourceFiles="@(Net35Files)" DestinationFolder="$(Root)\build\Published\DbUp\lib\NET35" />
     <Copy SourceFiles="@(Net35SqlCeFiles)" DestinationFolder="$(Root)\build\Published\DbUp-SqlCe\lib\NET35" />
+	<Copy SourceFiles="@(Net35MySqlFiles)" DestinationFolder="$(Root)\build\Published\DbUp-MySql\lib\NET35" />
     
     <!-- Zip binaries -->
     <ItemGroup>
@@ -97,16 +103,20 @@
     <ItemGroup>
       <NuSpecFiles Include="$(Root)\build\dbup.nuspec" />
       <SqlCeNuSpecFiles Include="$(Root)\build\dbup.sqlce.nuspec" />
+	  <MySqlNuSpecFiles Include="$(Root)\build\dbup.mysql.nuspec" />
     </ItemGroup>
     <Copy SourceFiles="@(NuSpecFiles)" DestinationFolder="$(Root)\build\Published\DbUp" />
     <Copy SourceFiles="@(SqlCeNuSpecFiles)" DestinationFolder="$(Root)\build\Published\DbUp-SqlCe" />
+	<Copy SourceFiles="@(MySqlNuSpecFiles)" DestinationFolder="$(Root)\build\Published\DbUp-MySql" />
 
     <FileUpdate Files="$(Root)\build\Published\DbUp\dbup.nuspec" Regex="0.0.0" ReplacementText="$(build_number)" />
     <FileUpdate Files="$(Root)\build\Published\DbUp-SqlCe\dbup.sqlce.nuspec" Regex="0.0.0" ReplacementText="$(build_number)" />
+	<FileUpdate Files="$(Root)\build\Published\DbUp-MySql\dbup.mysql.nuspec" Regex="0.0.0" ReplacementText="$(build_number)" />
     
     <!-- Pack -->
     <Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Published\DbUp\dbup.nuspec -b $(Root)\build\Published\DbUp -o $(Root)\build\Artifacts" />
     <Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Published\DbUp-SqlCe\dbup.sqlce.nuspec -b $(Root)\build\Published\DbUp-SqlCe -o $(Root)\build\Artifacts" />
+	<Exec Command="$(Root)\lib\nuget\nuget.exe pack $(Root)\build\Published\DbUp-MySql\dbup.mysql.nuspec -b $(Root)\build\Published\DbUp-MySql -o $(Root)\build\Artifacts" />
    
   </Target>
 </Project>

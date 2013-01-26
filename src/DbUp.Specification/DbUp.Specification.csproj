@@ -63,6 +63,7 @@
     <Compile Include="Contexts\GivenAnUptoDateDatabase.cs" />
     <Compile Include="Contexts\GivenScriptsWithVariableSubstitutions.cs" />
     <Compile Include="EmbeddedScriptAndCodeProviderTests.cs" />
+    <Compile Include="MySqlSupportTests.cs" />
     <Compile Include="SqlScriptExecutorTests.cs" />
     <Compile Include="UpgradeEngineTests.cs" />
     <Compile Include="FileSystemScriptProviderTests.cs" />
