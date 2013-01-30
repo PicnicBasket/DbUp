@@ -72,7 +72,7 @@
     <Compile Include="Engine\IScriptExecutor.cs" />
     <Compile Include="ScriptProviders\EmbeddedScriptAndCodeProvider.cs" />
     <Compile Include="Support\MySql\MySqlExtensions.cs" />
-    <Compile Include="Support\MySql\SqlScriptExecutor.cs" />
+    <Compile Include="Support\MySql\MySqlScriptExecutor.cs" />
     <Compile Include="Support\MySql\MySqlTableJournal.cs" />
     <Compile Include="Support\SqlServer\SqlScriptExecutor.cs" />
     <Compile Include="Engine\IScriptPreprocessor.cs" />

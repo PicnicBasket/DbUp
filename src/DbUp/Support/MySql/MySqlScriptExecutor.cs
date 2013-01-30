@@ -11,6 +11,9 @@ using DbUp.Helpers;
 
 namespace DbUp.Support.MySql
 {
+    /// <summary>
+    /// A standard implementation of the IScriptExecutor interface that executes against a MySql database.
+    /// </summary>
     public class MySqlScriptExecutor : IScriptExecutor
     {
         private readonly Func<IDbConnection> connectionFactory;
@@ -68,8 +71,7 @@ namespace DbUp.Support.MySql
 
             var sqlRunner = new AdHocSqlRunner(connectionFactory, Schema, () => true);
 
-            sqlRunner.ExecuteNonQuery(string.Format(
-               @"CREATE DATABASE IF NOT EXISTS {0};", Schema));
+            sqlRunner.ExecuteNonQuery(string.Format(@"CREATE DATABASE IF NOT EXISTS {0};", Schema));
         }
 
         /// <summary>
