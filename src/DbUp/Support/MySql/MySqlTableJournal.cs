@@ -1,18 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using DbUp.Engine;
 using DbUp.Engine.Output;
+using DbUp.Support.SqlServer;
 
-namespace DbUp.Support.SqlServer
+namespace DbUp.Support.MySql
 {
     /// <summary>
     /// An implementation of the <see cref="IJournal"/> interface which tracks version numbers for a 
     /// SQL Server database using a table called dbo.SchemaVersions.
     /// </summary>
-    public sealed class SqlTableJournal : IJournal
+    public sealed class MySqlTableJournal : IJournal
     {
         private readonly Func<IDbConnection> connectionFactory;
         private readonly string tableName;
@@ -29,7 +30,7 @@ namespace DbUp.Support.SqlServer
         /// <example>
         /// var journal = new TableJournal("Server=server;Database=database;Trusted_Connection=True", "dbo", "MyVersionTable");
         /// </example>
-        public SqlTableJournal(Func<IDbConnection> connectionFactory, string schema, string table, IUpgradeLog logger)
+        public MySqlTableJournal(Func<IDbConnection> connectionFactory, string schema, string table, IUpgradeLog logger)
         {
             this.connectionFactory = connectionFactory;
             schemaTableName = tableName = table;
